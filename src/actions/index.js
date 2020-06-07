@@ -19,7 +19,7 @@ export const updateProducts = (products) => {
 
 export const purchasedProducts = (purchasedsProduct) => {
     const purchasedsProd=purchasedsProduct;
-    
+
     return {
         type: GET_PURCHASED_PRODUCTS,
         purchProducts: purchasedsProd

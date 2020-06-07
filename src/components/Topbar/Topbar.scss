@@ -1,4 +1,4 @@
-.cabecalho
+.topbar
 {
     background: #fff;
     height: 2.625em;
@@ -11,26 +11,34 @@
     width: 100vw;
     z-index: 2;
 }
-.cabecalho__menu
+.topbar__menu
 {
     background: transparent;
     border: none;
     margin-left: .875em;
 }
-.cabecalho__logo, .cabecalho__logo img
+.topbar__logo, .topbar__logo img
 {
     width: 6.4375em;
     height: 2.625em;
 }
-.cabecalho__sacola
+.topbar__shoppingCart
 {
     background: transparent;
     border: none;
     outline: none;
 }
-.cabecalho__sacola__image
+.topbar__shoppingCart__image
 {
     width: 1.400625em;
     height: 1.60875em;
     margin-right: 1.2875em;
+}
+.topbar__sacola__shoppingCart__products
+{
+    position: absolute;
+    right: 1.375em;
+    top: 1.575em;
+    color: #D1B042;
+    font-size: .875em; 
 }

@@ -13,8 +13,6 @@ const CatalogoRoute = ( props ) => {
     let selectedProduct = {};
 
     const [ size, setSize ] = useState('');
-    const [ teste, setTeste ] = useState(false)
-    const [ purchaseds, setPurchaseds ] = useState('');
 
     for(var i=0;i<products.length; i++)
     {
@@ -132,20 +130,35 @@ const CatalogoRoute = ( props ) => {
                             }}>
                             Adicionar ao carrinho
                         </button> :
+                        <Link to="/" className="cat__route__purchase--backHome">
                             <button id="purchase" className="cat__route__purchase"
                                 onClick={() => {
                                     document.getElementById('purchase').classList.add('cat__route__purchase--clicked');
-                                    setPurchaseds({
-                                        name: selectedProduct.name,
-                                        image: selectedProduct.image,
-                                        chosenSize: size,
-                                        price: selectedProduct.totalPrice
-                                    });
-                                    purchasedProducts(purchaseds);
+                                    if(purchProducts.length===0)
+                                    {
+                                        purchasedProducts([{
+                                            name: selectedProduct.name,
+                                            image: selectedProduct.image,
+                                            chosenSize: size,
+                                            price: selectedProduct.totalPrice
+                                        }]);
+                                    }
+                                    else
+                                    {
+                                        let newProducts=[]
+                                        newProducts=[...purchProducts]
+                                        newProducts.push({
+                                            name: selectedProduct.name,
+                                            image: selectedProduct.image,
+                                            chosenSize: size,
+                                            price: selectedProduct.totalPrice
+                                        })
+                                        purchasedProducts(newProducts);
+                                    }
                             }}>
                                 Adicionar ao carrinho
                             </button>
-                        
+                        </Link>
                     }
                     <div id="invalidSize" className="cat__route__invalidSize">Escolha um tamanho</div>
                 </div>

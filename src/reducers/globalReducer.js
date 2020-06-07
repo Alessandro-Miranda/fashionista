@@ -5,7 +5,7 @@ import { GET_PURCHASED_PRODUCTS } from '../actions/actionsType';
 const initialState = {
     shoppingCart: false,
     products: [],
-    purchProducts: [1]
+    purchProducts: []
 };
 
 export const globalReducer = (state = initialState, action) => {

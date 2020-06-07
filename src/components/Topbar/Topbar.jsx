@@ -8,18 +8,20 @@ import { connect } from 'react-redux';
 import './Topbar.scss';
 
 const Topbar = (props) => {
-    console.log(props.purchProducts);
+    const { purchProducts } = props;
+
     return (
-        <header className="cabecalho">
-            <button className="cabecalho__menu">
+        <header className="topbar">
+            <button className="topbar__menu">
                 <Menu />
             </button>
-            <Link to="/" className="cabecalho__logo">
+            <Link to="/" className="topbar__logo">
                 <img src={LogoPng} alt="logo fashionista" />
             </Link>
 
-            <button className="cabecalho__sacola">
-                <SacolaDeCompras className="cabecalho__sacola__image"/>
+            <button className="topbar__shoppingCart">
+                <SacolaDeCompras className="topbar__shoppingCart__image"/>
+                <span className="topbar__sacola__shoppingCart__products">{purchProducts.length}</span>
             </button>
         </header>
     );
