@@ -1,0 +1,62 @@
+@font-face
+{
+    font-family: 'Century Gothic';
+    src: url(../../assets/fonts/century-gothic.ttf);
+}
+#busca
+{
+    display: flex;
+    height: 1.625em;
+    justify-content: space-between;
+    padding-right: .65em;
+    position: relative;
+    margin-top: 2.625em;
+}
+.busca__input
+{
+    width: 90%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    vertical-align: middle;
+    padding-left: 1.25em;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+}
+.busca__input--focus
+{
+    border-bottom: .0625em solid #C0B283;
+}
+::-webkit-input-placeholder
+{
+    color: #C0B283;
+    font-family: 'Tangerine';
+    font-size: 1.5em;
+}
+:-moz-placeholder
+{
+    color: #C0B283;
+    font-family: 'Tangerine';
+}
+::-moz-placeholder
+{
+    color: #C0B283;
+    font-family: 'Tangerine';
+}
+:-ms-input-placeholder
+{
+    color: #C0B283;
+    font-family: 'Tangerine';
+}
+.busca__button
+{
+    width: 10%;
+    height: 100%;
+    border: none;
+    background: transparent;
+}
+.busca__icon:hover, .busca__icon--focus
+{
+    color: rgba(0, 0, 0, .5);
+}

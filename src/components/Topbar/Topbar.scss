@@ -1,0 +1,36 @@
+.cabecalho
+{
+    background: #fff;
+    height: 2.625em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+}
+.cabecalho__menu
+{
+    background: transparent;
+    border: none;
+    margin-left: .875em;
+}
+.cabecalho__logo, .cabecalho__logo img
+{
+    width: 6.4375em;
+    height: 2.625em;
+}
+.cabecalho__sacola
+{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.cabecalho__sacola__image
+{
+    width: 1.400625em;
+    height: 1.60875em;
+    margin-right: 1.2875em;
+}

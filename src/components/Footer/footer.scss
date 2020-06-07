@@ -1,0 +1,70 @@
+.rodape
+{
+    background: #373737;
+    padding-right: .5em;
+    padding-top: .875em;
+}
+.rodape div
+{
+    display: flex;
+    justify-content: space-between;
+}
+.rodape__logo
+{
+    align-self: center;
+    width: 4.25em;
+    height: 2.5625em;
+    padding-left: .9375em;
+    padding-top: .5625em;
+}
+.rodape__logo__imagem
+{
+    width: 100%;
+    height: 100%;
+}
+.rodape__contatos
+{
+    width: 8.1em;
+    height: 3.575em;
+    color: #81817B;
+    box-shadow: 0 0 5px #81817B;
+    border-radius: 5px;
+    padding: 0 2px 1px 4px;
+}
+.rodape__contatos__informacoes
+{
+    font-weight: 100;
+    text-transform: capitalize;
+    font-family: 'Century Gothic';
+    font-size: .5375rem;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    line-height: 1.5;
+}
+.rodape__contatos__informacoes p
+{
+    margin: 0;
+    display: inline;
+    padding-left: .375em;
+}
+.rodape__contatos__informacoes--nome
+{
+    font-size: .6375rem;
+}
+.rodape__contatos__informacoes--email
+{
+    text-transform: lowercase;
+}
+i[class^="fa"]
+{
+    font-size: .5625rem;
+}
+.rodape__copyright
+{
+    font-size: .5625em;
+    color: #81817B;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Century Gothic';
+}

@@ -1,0 +1,25 @@
+.banner
+{
+    background-image: url(../../assets/imagens/banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #F4F4F4;
+    height: 12.5em;
+    display: flex;
+}
+.banner__frase
+{
+    font-family: 'Allura';
+    font-size: 1.4375em;
+    line-height: 1.4375em;
+    color: #D1B042;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 8em;
+    height: 1.4375em;
+    background: #F4F4F4;
+    opacity: 75%;
+    align-self: center;
+    border-radius: 3px;
+}

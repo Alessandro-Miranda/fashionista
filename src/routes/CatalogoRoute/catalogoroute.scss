@@ -1,0 +1,91 @@
+.cat__route
+{
+    position: relative;
+    top: 2.625em;
+    margin-bottom: 8em;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.cat__route__product__image
+{
+    width: 9em;
+    height: 12em;
+    display: inline-block;
+    border-radius: 5px;
+    box-shadow: 0 0 2px black;
+    margin-top: 0;
+}
+.cat__route__product__content
+{
+    display: flex;
+}
+.cat__route__product__informations
+{
+    margin-left: 3em;
+    font-family: 'Century Gothic';
+    font-size: .875em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #373737;
+    line-height: 1.95;
+}
+.cat__route__product__informations h1,
+.cat__route__product__informations h3,
+.cat__route__product__informations p
+{
+    margin: 0;
+}
+.cat__route__product__informations--complements
+{
+    color: #81817B;
+}
+.cat__route__sizes
+{
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    line-height: 1.5;
+    color: #81817B;
+    background: transparent;
+    border-radius: 2.5px;
+    border: 1px solid #373737;
+    outline: none;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.cat__route__sizes--selected
+{
+    background: rgba(#373737, .05);
+    border: none;
+    box-shadow: 0 0 2px black;
+    color: #D1B042;
+}
+.cat__route__purchase
+{
+    font-family: 'Century Gothic';
+    font-size: 1.2em;
+    line-height: 1.5;
+    font-weight: bold;
+    display: block;
+    margin-top: 1.875em;
+    background: rgba(#373737, .05);
+    border: none;
+    color: #373737;
+    box-shadow: 0 0 2px black;
+    border-radius: 2px;
+    outline: none;
+}
+.cat__route__purchase--clicked{
+    box-shadow: 0 0 2px #D1B042;
+}
+.cat__route__invalidSize
+{
+    display: none;
+    font-family: 'Century Gothic';
+    color: red;
+    text-transform: none;
+}
+.cat__route__purchase--backHome
+{
+    text-decoration: none;
+}
