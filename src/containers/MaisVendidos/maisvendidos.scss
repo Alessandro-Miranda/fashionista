@@ -5,6 +5,20 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+@media screen and (min-width: 500px)
+{
+    .mais__vendidos
+    {
+        justify-content: center;
+    }
+}
+@media screen and (min-width: 740px)
+{
+    .mais__vendidos
+    {
+        margin-top: 3em;
+    }
+}
 .mais__vendidos__title
 {
     font-family: 'Poiret One';

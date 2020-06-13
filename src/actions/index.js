@@ -1,6 +1,7 @@
 import { CLICK_UPDATE_SHOPPING_CART } from './actionsType';
 import { GET_UPDATE_PRODUCTS } from './actionsType';
 import { GET_PURCHASED_PRODUCTS } from './actionsType';
+import { CLOSE_BUTTON_SHOPPING_CART } from './actionsType';
 
 export const clickButton = (value) => ({
     type: CLICK_UPDATE_SHOPPING_CART,
@@ -17,11 +18,20 @@ export const updateProducts = (products) => {
     }
 }
 
-export const purchasedProducts = (purchasedsProduct) => {
+export const purchasedProducts = (purchasedsProduct, total_price) => {
     const purchasedsProd=purchasedsProduct;
+    const totalPri = total_price;
 
     return {
         type: GET_PURCHASED_PRODUCTS,
-        purchProducts: purchasedsProd
+        purchProducts: purchasedsProd,
+        totalPrice: totalPri
+    }
+}
+
+export const closeButtonClick = (state) => {
+    return {
+        type: CLOSE_BUTTON_SHOPPING_CART,
+        stateButton: state
     }
 }

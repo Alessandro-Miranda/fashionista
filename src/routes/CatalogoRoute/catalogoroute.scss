@@ -1,11 +1,17 @@
 .cat__route
 {
     position: relative;
-    top: 2.625em;
+    top: 3.875em;
     margin-bottom: 8em;
     display: flex;
     flex-direction: row;
-    height: 100vh;
+}
+@media screen and (min-width: 960px)
+{
+    .cat__route
+    {
+        top: 7em;
+    }
 }
 .cat__route__product__image
 {
@@ -16,19 +22,46 @@
     box-shadow: 0 0 2px black;
     margin-top: 0;
 }
+@media screen and (min-width: 740px)
+{
+    .cat__route__product__image
+    {
+        width: 13em;
+        height: 15em;
+    }
+}
 .cat__route__product__content
 {
     display: flex;
 }
 .cat__route__product__informations
 {
-    margin-left: 3em;
+    margin-left: 1.575em;
     font-family: 'Century Gothic';
     font-size: .875em;
     font-weight: bold;
     text-transform: uppercase;
     color: #373737;
     line-height: 1.95;
+}
+@media screen and (max-width: 440px)
+{
+    .cat__route__product__content
+    {
+        flex-direction: column;
+    }
+    .cat__route__product__informations
+    {
+        margin-left: 0;
+        margin-top: 1em;
+    }
+}
+@media screen and (min-width: 960px)
+{
+    .cat__route__product__informations
+    {
+        margin-left: 4em;
+    }
 }
 .cat__route__product__informations h1,
 .cat__route__product__informations h3,
@@ -67,7 +100,7 @@
     line-height: 1.5;
     font-weight: bold;
     display: block;
-    margin-top: 1.875em;
+    margin-top: 1em;
     background: rgba(#373737, .05);
     border: none;
     color: #373737;
@@ -88,4 +121,33 @@
 .cat__route__purchase--backHome
 {
     text-decoration: none;
+}
+.cat__route__product__amount
+{
+    margin-top: .575em;
+}
+.cat__route__product__amount h3
+{
+    display: inline-block;
+}
+.cat__route__product__amount span
+{
+    width: 1.575em;
+    margin-right: .875em;
+    margin-left: .375em;
+    text-align: center;
+}
+.cat__route__product__amount__button
+{
+    background: transparent;
+    margin-right: .675em;
+    border: none;
+    border-radius: 40%;
+    vertical-align: middle;
+    box-shadow: 0 0 3px black;
+    outline: none;
+}
+.cat__route__product__amount p
+{
+    margin-top: .375em;
 }

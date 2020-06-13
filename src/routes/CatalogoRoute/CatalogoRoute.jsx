@@ -9,11 +9,11 @@ import './catalogoroute.scss';
 
 const CatalogoRoute = ( props ) => {
     const { name } = useParams();
-    const { purchasedProducts, products, purchProducts } = props;
+    const { purchasedProducts, products, purchProducts, totalPrice } = props;
     let selectedProduct = {};
 
     const [ size, setSize ] = useState('');
-
+    
     for(var i=0;i<products.length; i++)
     {
         if(products[i].name === name)
@@ -116,6 +116,44 @@ const CatalogoRoute = ( props ) => {
                         ); 
                         })
                     }
+                    <div className="cat__route__product__amount">
+                        <h3 className="cat__route__product__informations
+                            cat__route__product__informations--complements">
+                            Quantidade: <span id="amount">1</span>
+                            
+                        </h3>
+                        <button id="plusButton" className="cat__route__product__amount__button"
+                            onClick={() => {
+                                let value = parseInt(document.getElementById('amount').textContent);
+                                if(value<10)
+                                {
+                                    document.getElementById('amount').textContent = value+1;
+                                }
+                                else
+                                {  
+                                    document.getElementById('amount').textContent=10;
+                                }
+                                
+                            }}>
+                            <i className="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+
+                        <button className="cat__route__product__amount__button" onClick={()=> {
+                            let value = parseInt(document.getElementById('amount').textContent);
+                            if(value - 1 ===0)
+                            {
+                                document.getElementById('amount').textContent=1
+                            }
+                            else
+                            {
+                                document.getElementById('amount').textContent=value-1;
+                            }
+                            
+                            
+                        }}>
+                            <i className="fa fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </div>
                     {size === "" ?
                         <button id="purchase" className="cat__route__purchase"
                             onClick={()=> {
@@ -136,24 +174,43 @@ const CatalogoRoute = ( props ) => {
                                     document.getElementById('purchase').classList.add('cat__route__purchase--clicked');
                                     if(purchProducts.length===0)
                                     {
+                                        let amount=parseInt(document.getElementById('amount').textContent);
+
+                                        let destructurePrice = selectedProduct.totalPrice.split(" ");
+                                        let convertPrice = destructurePrice[1].split(',');
+                                        let price=convertPrice[0]+'.'+convertPrice[1];
+                                        
+                                        let total_price = [price*amount];
+
                                         purchasedProducts([{
                                             name: selectedProduct.name,
                                             image: selectedProduct.image,
                                             chosenSize: size,
-                                            price: selectedProduct.totalPrice
-                                        }]);
+                                            price: price*amount,
+                                            amount: amount,
+                                        }], total_price);
                                     }
                                     else
                                     {
-                                        let newProducts=[]
-                                        newProducts=[...purchProducts]
+                                        let newProducts=[];
+                                        let amount = parseInt(document.getElementById('amount').textContent);
+                                        let newPrice = selectedProduct.totalPrice.split(" ");
+                                        newPrice = newPrice[1].split(',');
+                                        newPrice = (newPrice[0] +'.'+ newPrice[1])*amount;
+                                        
+                                        let total_price = []
+                                        total_price = [...totalPrice]
+                                        newProducts = [...purchProducts];
+                                        
                                         newProducts.push({
                                             name: selectedProduct.name,
                                             image: selectedProduct.image,
                                             chosenSize: size,
-                                            price: selectedProduct.totalPrice
+                                            price: newPrice,
+                                            amount: amount
                                         })
-                                        purchasedProducts(newProducts);
+                                        total_price.push(newPrice);
+                                        purchasedProducts(newProducts, total_price);
                                     }
                             }}>
                                 Adicionar ao carrinho
@@ -170,7 +227,8 @@ const CatalogoRoute = ( props ) => {
 
 const mapStateToProps = store => ({
     products: store.clickState.products,
-    purchProducts: store.clickState.purchProducts
+    purchProducts: store.clickState.purchProducts,
+    totalPrice: store.clickState.totalPrice
 });
 const mapDispacthToProps = dispatch => bindActionCreators({purchasedProducts}, dispatch);
   

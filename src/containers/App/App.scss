@@ -20,6 +20,14 @@ body
   max-width: 100%;
   padding: 1.28125em 2.26875em .58125em 2.26875em;
 }
+@media screen and (min-width: 990px)
+{
+    .container
+    {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
 .teste
 {
   margin: 0;

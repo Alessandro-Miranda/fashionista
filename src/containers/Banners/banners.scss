@@ -6,6 +6,36 @@
     background-color: #F4F4F4;
     height: 12.5em;
     display: flex;
+    position: relative;
+    top: 2em;
+}
+@media screen and (min-width: 440px)
+{
+    .banner
+    {
+        background-image: url(../../assets/imagens/banner1024x400png.png);
+        background-position: top center;
+        background-size: cover;
+    }
+}
+@media screen and (min-width: 740px)
+{
+    .banner
+    {
+        background-image: url(../../assets/imagens/banner1500x700.png);
+        background-position: top center;
+        background-size: cover;
+        height: 400px;
+    }
+}
+@media screen and (min-width: 960px)
+{
+    .banner
+    {
+        position: relative;
+        top: 3.875em;
+        margin-bottom: 3em;
+    }
 }
 .banner__frase
 {
@@ -22,4 +52,11 @@
     opacity: 75%;
     align-self: center;
     border-radius: 3px;
+}
+@media screen and (min-width: 960px)
+{
+    .banner__frase
+    {
+        font-size: 2.375em;
+    }
 }

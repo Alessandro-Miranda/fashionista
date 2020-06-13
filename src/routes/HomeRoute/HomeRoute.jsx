@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Pesquisa from '../../containers/Pesquisa';
 import Banners from '../../containers/Banners';
 import MaisVendidos from '../../containers/MaisVendidos';
 import Catalogos from '../../containers/Catalogos';
+import Footer from '../../components/Footer';
 
 import { connect } from 'react-redux';
 import { updateProducts } from '../../actions';
@@ -35,12 +35,14 @@ const HomeRoute = (props) => {
     }
     
     return (
-        <div>
-            <Pesquisa />
+        <main onClick={() =>(
+              document.getElementById('shoppingCart').style.display="none"
+            )}>
             <Banners />
             <MaisVendidos products={mais_vendidos}/>
             <Catalogos/>
-        </div>
+            <Footer />
+        </main>
     );
 };
 
