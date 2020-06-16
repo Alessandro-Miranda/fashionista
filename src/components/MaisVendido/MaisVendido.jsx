@@ -8,12 +8,12 @@ const MaisVendido = ({ productInfo }) => {
 
     if(products.length > 0)
     {
-        return products.map((elem, count=0) => {
+        return products.map((elem) => {
                 return (
-                    <artilce className="mais__vendido" key={count++} index={elem.style}>
+                    <artilce className="mais__vendido" key={elem.code_color} index={elem.style}>
                         <i id="icon" className="far fa-heart mais__vendido__icone" ></i>
                         
-                        <Link to={`/catalogo/product=${elem.name}`} className="mais__vendido__route">
+                        <Link to={`/catalogo/product=${elem.code_color}`} className="mais__vendido__route">
                             <div className="mais__vendido__image">
                                 <img src={elem.image} alt="produto 1" className="mais__vendido__produto"/>
                                 <p className="mais__vendido__descricao">

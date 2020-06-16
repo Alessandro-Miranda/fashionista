@@ -7,8 +7,10 @@ import produtoIndisponivel from '../../assets/imagens/produto_indisponivel.png';
 
 import './catalogoroute.scss';
 
+import $ from 'jquery';
+
 const CatalogoRoute = ( props ) => {
-    const { name } = useParams();
+    const { code_color } = useParams();
     const { purchasedProducts, products, purchProducts, totalPrice } = props;
     let selectedProduct = {};
 
@@ -16,10 +18,11 @@ const CatalogoRoute = ( props ) => {
     
     for(var i=0;i<products.length; i++)
     {
-        if(products[i].name === name)
+        if(products[i].code_color === code_color)
         {
             selectedProduct = {
                 name: products[i].name,
+                code_color: products[i].code_color,
                 price: products[i].regular_price,
                 promotion: products[i].actual_price,
                 image: products[i].image,
@@ -43,7 +46,14 @@ const CatalogoRoute = ( props ) => {
             }
         }
     }
-
+    $(document).ready(function(){
+        if(selectedProduct.image==="")
+        {
+            $("#purchase").attr('disabled', 'disabled')
+                .css("background-color", "white")
+                    .css("color", "lightgray");
+        }
+    })
     return (
         <section className="cat__route container">
             <article className="cat__route__product__content">

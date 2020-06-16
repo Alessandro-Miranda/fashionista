@@ -1,7 +1,7 @@
 .mais__vendido
 {
     width: 7.975em;
-    height: 12.8em;
+    height: 13.8em;
     position: relative;
     top: 0;
     box-shadow: 0 0 2px black;
@@ -77,7 +77,7 @@
     text-transform: uppercase;
     text-decoration: none;
     color: #373737;
-    padding-left: 2px;
+    padding-left: 5px;
 }
 .mais__vendido__descricao--preco
 {
@@ -86,6 +86,8 @@
     line-height: 2;
     display: block;
     margin: 0;
+    position: absolute;
+    bottom: 20px;
 }
 .mais__vendido__icone__carrinho
 {

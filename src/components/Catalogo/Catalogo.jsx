@@ -14,14 +14,14 @@ const Catalogo = ( props ) => {
     
     if(products.length > 0)
     {
-        return products.map((elem, count=1) => {
+        return products.map((elem) => {
             return (    
-                <artilce className="catalogo" key={count++} index={elem.style}>
+                <artilce className="catalogo" key={elem.code_color} index={elem.style}>
                     <i id="icon" className="far fa-heart catalogo__icone" ></i>
                     {elem.on_sale===true ?
                     <span className="catalogo__desconto">{elem.discount_percentage} off</span> : null
                     }
-                    <Link to={`/catalogo/product=${elem.name}`} className="catalogo__route">
+                    <Link to={`/catalogo/product=${elem.code_color}`} className="catalogo__route">
                         <div className="catalogo__image">
                             {elem.image==="" ?
                                 <img src={produtoIndisponivel} alt="produto 1" className="catalogo__produto catalogo__produto--border"/> :
@@ -33,7 +33,7 @@ const Catalogo = ( props ) => {
                             {elem.on_sale===true ? 
                                 <p className="catalogo__descricao 
                                     catalogo__descricao--preco catalogo__descricao--preco--promocional">
-                                    de <del>{elem.regular_price}</del> por <ins>{elem.actual_price}</ins>
+                                    de <del>{elem.regular_price}</del><br />por <ins>{elem.actual_price}</ins>
                                 </p> :
                                 <p className="catalogo__descricao catalogo__descricao--preco">
                                     {elem.regular_price}

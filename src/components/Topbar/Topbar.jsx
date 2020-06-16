@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { purchasedProducts } from '../../actions';
 import { closeButtonClick } from '../../actions';
+import produtoIndisponivel from '../../assets/imagens/produto_indisponivel.png';
 
 import $ from 'jquery';
 
@@ -20,7 +21,7 @@ const Topbar = (props) => {
         let productName = document.getElementById(`removeButton${id}`).value;
         let priceRemoved = [];
         let newTotalPrice = [...totalPrice];
-        
+        debugger
         //eslint-disable-next-line
         let newProducts = purchProducts.filter((elem) => {
             if(elem.name !== productName)
@@ -89,7 +90,9 @@ const Topbar = (props) => {
                 {purchProducts.length>0 && purchProducts.map((elem, count=0) => (
                     <li key={count++}>
                         <div className="topbar__shoppingCart__products__image">
-                            <img src={elem.image} alt={`Imagem do ${elem.name}`} />
+                            {elem.image === '' ? <img src={produtoIndisponivel} alt={elem.name} /> :
+                                <img src={elem.image} alt={`Imagem do ${elem.name}`} />
+                            }
                         </div>
                         <div className="topbar__shoppingCart__products__informations">
                             <p className="topbar__shoppingCart__products__informations 
