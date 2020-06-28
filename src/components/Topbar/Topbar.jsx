@@ -18,13 +18,13 @@ const Topbar = (props) => {
     const { purchProducts, purchasedProducts, totalPrice, stateButton, closeButtonClick } = props;
     
     const deleteProduct = (id) => {
-        let productName = document.getElementById(`removeButton${id}`).value;
+        let productName = parseFloat(document.getElementById(`removeButton${id}`).value);
         let priceRemoved = [];
         let newTotalPrice = [...totalPrice];
-        debugger
+        console.log(productName)
         //eslint-disable-next-line
         let newProducts = purchProducts.filter((elem) => {
-            if(elem.name !== productName)
+            if(elem.id !== productName)
             {
                 return elem;
             }
@@ -57,6 +57,7 @@ const Topbar = (props) => {
                 }
             }}>
                 <SacolaDeCompras className="topbar__shoppingCart__image"/>
+                
                 <span className="topbar__shoppingCart__amountProducts">{purchProducts.length}</span>
             </button>
 
@@ -81,47 +82,48 @@ const Topbar = (props) => {
                     <p className="topbar__shopingCart__products__totalPrice">Valor Total:   
                         <span> {totalPrice.reduce((elem, actual) => {
                             return (parseFloat(elem)+parseFloat(actual));
-                            }).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
+                                }).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
                         }
                         </span>
                     </p>        
                 }
-                
-                {purchProducts.length>0 && purchProducts.map((elem, count=0) => (
-                    <li key={count++}>
-                        <div className="topbar__shoppingCart__products__image">
-                            {elem.image === '' ? <img src={produtoIndisponivel} alt={elem.name} /> :
-                                <img src={elem.image} alt={`Imagem do ${elem.name}`} />
-                            }
-                        </div>
-                        <div className="topbar__shoppingCart__products__informations">
-                            <p className="topbar__shoppingCart__products__informations 
-                                topbar__shoppingCart__products__informations--name"
-                            >
-                                {elem.name}
-                            </p>
-                            <p className="topbar__shoppingCart__products__addInformations">
-                                Tamanho: {elem.chosenSize}
-                            </p>
-                            <p  className="topbar__shoppingCart__products__addInformations">
-                                Preço: {elem.price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
-                            </p>
-                            <p className="topbar__shoppingCart__products__addInformations">
-                                Quantidade: {elem.amount}
-                            </p>
-                            <button id={`removeButton${count}`} className="topbar__shoppingCart__products__delete" 
-                                value={elem.name} onClick={()=>deleteProduct(count)}>
-                                Remover item
-                            </button>
-                        </div>
-                    </li>
-                ))}
+                {purchProducts.length > 0 && purchProducts.map((elem, count=0) => {
+                    return (
+                        <li key={count++}>
+                            <div className="topbar__shoppingCart__products__image">
+                                {elem.image === '' ? <img src={produtoIndisponivel} alt={elem.name} /> :
+                                    <img src={elem.image} alt={`Imagem do ${elem.name}`} />
+                                }
+                            </div>
+                            <div className="topbar__shoppingCart__products__informations">
+                                <p className="topbar__shoppingCart__products__informations 
+                                    topbar__shoppingCart__products__informations--name"
+                                >
+                                    {elem.name}
+                                </p>
+                                <p className="topbar__shoppingCart__products__addInformations">
+                                    Tamanho: {elem.chosenSize}
+                                </p>
+                                <p  className="topbar__shoppingCart__products__addInformations">
+                                    Preço: {elem.price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+                                </p>
+                                <p className="topbar__shoppingCart__products__addInformations">
+                                    Quantidade: {elem.amount}
+                                </p>
+                                <button id={`removeButton${elem.id}`} className="topbar__shoppingCart__products__delete" 
+                                    value={elem.id} onClick={()=>deleteProduct(elem.id)}>
+                                    Remover item
+                                </button>
+                            </div>
+                        </li>
+                    )})}
             </ul>
         </header>
     );
 }
 
 const mapStateToProps = store => ({
+    products: store.clickState.products,
     purchProducts: store.clickState.purchProducts,
     totalPrice: store.clickState.totalPrice,
     stateButton: store.clickState.stateButton

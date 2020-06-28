@@ -20,7 +20,7 @@ const HomeRoute = (props) => {
         })
     }, []);
 
-    if(product.length===22)
+    if(product.length !== 0)
     {
         updateProducts(product);
     }

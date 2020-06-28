@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { purchasedProducts } from '../../actions';
 import { connect } from 'react-redux';
 import produtoIndisponivel from '../../assets/imagens/produto_indisponivel.png';
+import purchase from '../../utils/purchase';
 
 import './catalogoroute.scss';
 
@@ -13,8 +14,16 @@ const CatalogoRoute = ( props ) => {
     const { code_color } = useParams();
     const { purchasedProducts, products, purchProducts, totalPrice } = props;
     let selectedProduct = {};
-
     const [ size, setSize ] = useState('');
+    
+    const getPurchase = () => {
+        let getPurchaseds = purchase(selectedProduct, purchProducts, size, totalPrice);
+        if(getPurchaseds!== undefined)
+        {
+            const { product, prices } = getPurchaseds;
+            purchasedProducts(product, prices);
+        }
+    }
     
     for(var i=0;i<products.length; i++)
     {
@@ -22,13 +31,12 @@ const CatalogoRoute = ( props ) => {
         {
             selectedProduct = {
                 name: products[i].name,
-                code_color: products[i].code_color,
                 price: products[i].regular_price,
                 promotion: products[i].actual_price,
                 image: products[i].image,
                 sizes: products[i].sizes,
                 discount: products[i].discount_percentage,
-                payment: products[i].installments
+                payment: products[i].installments,
             }
             if(selectedProduct.promotion==='')
             {
@@ -180,49 +188,7 @@ const CatalogoRoute = ( props ) => {
                         </button> :
                         <Link to="/" className="cat__route__purchase--backHome">
                             <button id="purchase" className="cat__route__purchase"
-                                onClick={() => {
-                                    document.getElementById('purchase').classList.add('cat__route__purchase--clicked');
-                                    if(purchProducts.length===0)
-                                    {
-                                        let amount=parseInt(document.getElementById('amount').textContent);
-
-                                        let destructurePrice = selectedProduct.totalPrice.split(" ");
-                                        let convertPrice = destructurePrice[1].split(',');
-                                        let price=convertPrice[0]+'.'+convertPrice[1];
-                                        
-                                        let total_price = [price*amount];
-
-                                        purchasedProducts([{
-                                            name: selectedProduct.name,
-                                            image: selectedProduct.image,
-                                            chosenSize: size,
-                                            price: price*amount,
-                                            amount: amount,
-                                        }], total_price);
-                                    }
-                                    else
-                                    {
-                                        let newProducts=[];
-                                        let amount = parseInt(document.getElementById('amount').textContent);
-                                        let newPrice = selectedProduct.totalPrice.split(" ");
-                                        newPrice = newPrice[1].split(',');
-                                        newPrice = (newPrice[0] +'.'+ newPrice[1])*amount;
-                                        
-                                        let total_price = []
-                                        total_price = [...totalPrice]
-                                        newProducts = [...purchProducts];
-                                        
-                                        newProducts.push({
-                                            name: selectedProduct.name,
-                                            image: selectedProduct.image,
-                                            chosenSize: size,
-                                            price: newPrice,
-                                            amount: amount
-                                        })
-                                        total_price.push(newPrice);
-                                        purchasedProducts(newProducts, total_price);
-                                    }
-                            }}>
+                                onClick={getPurchase}>
                                 Adicionar ao carrinho
                             </button>
                         </Link>

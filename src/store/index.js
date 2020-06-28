@@ -15,5 +15,3 @@ const Store = createStore(persistedReducer);
 const persistor = persistStore(Store);
 
 export { Store, persistor };
-
-//export const Store = createStore(Reducers);
