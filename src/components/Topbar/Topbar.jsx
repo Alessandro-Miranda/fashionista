@@ -21,7 +21,7 @@ const Topbar = (props) => {
         let productName = parseFloat(document.getElementById(`removeButton${id}`).value);
         let priceRemoved = [];
         let newTotalPrice = [...totalPrice];
-        console.log(productName)
+
         //eslint-disable-next-line
         let newProducts = purchProducts.filter((elem) => {
             if(elem.id !== productName)
@@ -30,10 +30,11 @@ const Topbar = (props) => {
             }
             else
             {
-                priceRemoved = -(elem.price);
+                priceRemoved = -(elem.price_total);
                 newTotalPrice.push(priceRemoved);
             }
-        })
+        });
+
         purchasedProducts(newProducts, newTotalPrice);
         document.getElementById('shoppingCart').style.display="block";
     }
@@ -64,7 +65,7 @@ const Topbar = (props) => {
             <ul id="shoppingCart" className="topbar__shoppingCart__products">
                 <button className="topbar__shoppingCart__products__closeButton" onClick={() => {
                     closeButtonClick(!stateButton)
-                    if(stateButton===false)
+                    if(stateButton === false)
                     {
                         $('#shoppingCart').hide(400);
                     }
@@ -72,7 +73,7 @@ const Topbar = (props) => {
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
                 
-                {purchProducts.length===0 ?
+                {purchProducts.length === 0 ?
                     <div className="topbar__shoppingCart__products__invalidMessage">
                         <i className="fa fa-frown-o" aria-hidden="true"></i>
                         <p>
@@ -81,15 +82,15 @@ const Topbar = (props) => {
                     </div> : 
                     <p className="topbar__shopingCart__products__totalPrice">Valor Total:   
                         <span> {totalPrice.reduce((elem, actual) => {
-                            return (parseFloat(elem)+parseFloat(actual));
+                            return (parseFloat(elem) + parseFloat(actual));
                                 }).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
                         }
                         </span>
                     </p>        
                 }
-                {purchProducts.length > 0 && purchProducts.map((elem, count=0) => {
+                {purchProducts.length > 0 && purchProducts.map((elem) => {
                     return (
-                        <li key={count++}>
+                        <li key={elem.id}>
                             <div className="topbar__shoppingCart__products__image">
                                 {elem.image === '' ? <img src={produtoIndisponivel} alt={elem.name} /> :
                                     <img src={elem.image} alt={`Imagem do ${elem.name}`} />
@@ -105,13 +106,16 @@ const Topbar = (props) => {
                                     Tamanho: {elem.chosenSize}
                                 </p>
                                 <p  className="topbar__shoppingCart__products__addInformations">
-                                    Preço: {elem.price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+                                    Preço: R$ {elem.price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
                                 </p>
                                 <p className="topbar__shoppingCart__products__addInformations">
                                     Quantidade: {elem.amount}
                                 </p>
+                                <p className="topbar__shoppingCart__products__addInformations">
+                                    Valor Total: {elem.price_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+                                </p>
                                 <button id={`removeButton${elem.id}`} className="topbar__shoppingCart__products__delete" 
-                                    value={elem.id} onClick={()=>deleteProduct(elem.id)}>
+                                    value={elem.id} onClick={() => deleteProduct(elem.id)}>
                                     Remover item
                                 </button>
                             </div>

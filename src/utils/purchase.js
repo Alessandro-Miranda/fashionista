@@ -1,3 +1,5 @@
+import { desctructurePrice } from "./index";
+
 const purchase = (selectedProduct, purchProducts, size, totalPrice) => {
     document.getElementById('purchase').classList.add('cat__route__purchase--clicked');
 
@@ -6,10 +8,7 @@ const purchase = (selectedProduct, purchProducts, size, totalPrice) => {
         let amount=parseInt(document.getElementById('amount').textContent);
         let product = [];
 
-        let destructurePrice = selectedProduct.totalPrice.split(" ");
-        let convertPrice = destructurePrice[1].split(',');
-        let price=convertPrice[0]+'.'+convertPrice[1];
-        
+        let price = desctructurePrice(selectedProduct.totalPrice);
         let total_price = [price*amount];
         
         product.push({
@@ -17,9 +16,11 @@ const purchase = (selectedProduct, purchProducts, size, totalPrice) => {
             name: selectedProduct.name,
             image: selectedProduct.image,
             chosenSize: size,
-            price: price*amount,
+            price: price,
+            price_total: price*amount,
             amount: amount,
         });
+        
         let prices;
         prices = total_price;
 
@@ -27,26 +28,22 @@ const purchase = (selectedProduct, purchProducts, size, totalPrice) => {
     }
     else
     {
-        let product=[];
-        let prices = [];
+        let product=[...purchProducts];
+        let prices = [...totalPrice];
         let amount = parseInt(document.getElementById('amount').textContent);
-        let price = selectedProduct.totalPrice.split(" ");
+        let price = desctructurePrice(selectedProduct.totalPrice);
 
-        price = price[1].split(',');
-        price = (price[0] +'.'+ price[1])*amount;
-
-        prices = [...totalPrice];
-        product = [...purchProducts];
-        
         product.push({
             id: purchProducts.length,
             name: selectedProduct.name,
             image: selectedProduct.image,
             chosenSize: size,
             price: price,
+            price_total: price*amount,
             amount: amount
-        })
-        prices.push(price);
+        });
+
+        prices.push(price*amount);
         return { product, prices };
     }
 };

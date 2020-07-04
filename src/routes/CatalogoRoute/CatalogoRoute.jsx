@@ -5,6 +5,7 @@ import { purchasedProducts } from '../../actions';
 import { connect } from 'react-redux';
 import produtoIndisponivel from '../../assets/imagens/produto_indisponivel.png';
 import purchase from '../../utils/purchase';
+import { selectedProduct } from '../../utils/index';
 
 import './catalogoroute.scss';
 
@@ -13,103 +14,84 @@ import $ from 'jquery';
 const CatalogoRoute = ( props ) => {
     const { code_color } = useParams();
     const { purchasedProducts, products, purchProducts, totalPrice } = props;
-    let selectedProduct = {};
+    
     const [ size, setSize ] = useState('');
     
+    /*Chama a função para fazer o tratamento de valor e 
+    retornar o produto à ser adicionado ao carrinho de compras*/
     const getPurchase = () => {
-        let getPurchaseds = purchase(selectedProduct, purchProducts, size, totalPrice);
-        if(getPurchaseds!== undefined)
+        let getPurchaseds = purchase(selected_product, purchProducts, size, totalPrice);
+        
+        if(getPurchaseds !== undefined)
         {
             const { product, prices } = getPurchaseds;
             purchasedProducts(product, prices);
         }
     }
     
-    for(var i=0;i<products.length; i++)
-    {
-        if(products[i].code_color === code_color)
-        {
-            selectedProduct = {
-                name: products[i].name,
-                price: products[i].regular_price,
-                promotion: products[i].actual_price,
-                image: products[i].image,
-                sizes: products[i].sizes,
-                discount: products[i].discount_percentage,
-                payment: products[i].installments,
-            }
-            if(selectedProduct.promotion==='')
-            {
-                selectedProduct = {
-                    ...selectedProduct,
-                    totalPrice: selectedProduct.price
-                }
-            }
-            else
-            {
-                selectedProduct = {
-                    ...selectedProduct,
-                    totalPrice: selectedProduct.promotion
-                }
-            }
-        }
-    }
+    //Pega todas as informações do produto que serão apresentadas na tela
+    let selected_product = selectedProduct(products, code_color);
+
+    /*Se o produto selecionado estiver indisponível (sem imagem),
+    após a página estar completamente carregada o botão para
+    adicionar ao carrinho será desabilitado*/
     $(document).ready(function(){
-        if(selectedProduct.image==="")
+        if(selectedProduct.image === "")
         {
             $("#purchase").attr('disabled', 'disabled')
                 .css("background-color", "white")
                     .css("color", "lightgray");
         }
-    })
+    });
+
     return (
         <section className="cat__route container">
             <article className="cat__route__product__content">
-                {selectedProduct.image === "" ?
+                {selected_product.image === "" ?
                     <img src={produtoIndisponivel} alt="Produto indiponivel" /> :
-                    <img src={selectedProduct.image} alt={`Imagem do ${selectedProduct.name}`} 
+                    <img src={selected_product.image} alt={`Imagem do ${selected_product.name}`} 
                         className="cat__route__product__image"/>
                 }
                 <div className="cat__route__product__informations">
-                    <h1>{selectedProduct.name}</h1>
+                    <h1>{selected_product.name}</h1>
 
-                    {selectedProduct.promotion === selectedProduct.price ? 
+                    {selected_product.promotion === selected_product.price ? 
                         <p className="cat__route__product__informations
                             cat__route__product__informations--complements">
-                            Por apenas {selectedProduct.price}
+                            Por apenas {selected_product.price}
                         </p> :
                         <div>
                             <p className="cat__route__product__informations
                                 cat__route__product__informations--complements">
-                                de <del>{selectedProduct.price}</del>
+                                de <del>{selected_product.price}</del>
                             </p>
                             
                             <p className="cat__route__product__informations
                                 cat__route__product__informations--complements">
-                                por apenas {selectedProduct.promotion}
+                                por apenas {selected_product.promotion}
                             </p>
 
                             <p className="cat__route__product__informations
                                 cat__route__product__informations--complements">
-                                economize {selectedProduct.discount}
+                                economize {selected_product.discount}
                             </p>
                         </div>
                     }
 
                     <h3 className="cat__route__product__informations
                                 cat__route__product__informations--complements">
-                        parcele em até {selectedProduct.payment}
+                        parcele em até {selected_product.payment}
                     </h3>
                     
                     <h3 className="cat__route__product__informations
                         cat__route__product__informations--complements">
                         tamanhos disponíveis:
                     </h3>
-                    {selectedProduct.sizes !== undefined && selectedProduct.sizes.map((elem) => {
+                    {selected_product.sizes !== undefined && selected_product.sizes.map((elem) => {
                         return (elem.available === true &&
                             <button value={elem.size} key={elem.size} 
                                 id={elem.size} className="cat__route__sizes" onClick={() => {
-                                    if(size ==="")
+                                    if(size === "")
                                     {
                                         document.getElementById(elem.size).classList
                                             .add('cat__route__sizes--selected');
@@ -117,7 +99,8 @@ const CatalogoRoute = ( props ) => {
                                     }
                                     else if(size === elem.size)
                                     {
-                                        document.getElementById(elem.size).classList.remove('cat__route__sizes--selected');
+                                        document.getElementById(elem.size).classList
+                                            .remove('cat__route__sizes--selected');
                                         setSize('');
                                     }
                                     else
@@ -143,7 +126,7 @@ const CatalogoRoute = ( props ) => {
                         <button id="plusButton" className="cat__route__product__amount__button"
                             onClick={() => {
                                 let value = parseInt(document.getElementById('amount').textContent);
-                                if(value<10)
+                                if(value < 10)
                                 {
                                     document.getElementById('amount').textContent = value+1;
                                 }
@@ -158,7 +141,7 @@ const CatalogoRoute = ( props ) => {
 
                         <button className="cat__route__product__amount__button" onClick={()=> {
                             let value = parseInt(document.getElementById('amount').textContent);
-                            if(value - 1 ===0)
+                            if(value - 1 === 0)
                             {
                                 document.getElementById('amount').textContent=1
                             }
@@ -176,7 +159,8 @@ const CatalogoRoute = ( props ) => {
                         <button id="purchase" className="cat__route__purchase"
                             onClick={()=> {
                                 document.getElementById('invalidSize').style.display='block';
-                                document.getElementById('purchase').classList.add('cat__route__purchase--clicked');
+                                document.getElementById('purchase').classList
+                                    .add('cat__route__purchase--clicked');
                                 }
                             }
                             onBlur={() => {
@@ -187,8 +171,7 @@ const CatalogoRoute = ( props ) => {
                             Adicionar ao carrinho
                         </button> :
                         <Link to="/" className="cat__route__purchase--backHome">
-                            <button id="purchase" className="cat__route__purchase"
-                                onClick={getPurchase}>
+                            <button id="purchase" className="cat__route__purchase" onClick={getPurchase}>
                                 Adicionar ao carrinho
                             </button>
                         </Link>

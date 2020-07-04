@@ -6,10 +6,10 @@ import Footer from '../../components/Footer';
 
 import { connect } from 'react-redux';
 import { updateProducts } from '../../actions';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 
 const HomeRoute = (props) => {
-    const url="https://5e9935925eabe7001681c856.mockapi.io/api/v1/catalog";
+    const url="https://5f00d97e07605200169e6cae.mockapi.io/api/fashionista/catalogo";
     const [product, setProduct] = useState([]);
     const { updateProducts} = props;
     const mais_vendidos = [];

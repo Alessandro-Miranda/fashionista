@@ -10,7 +10,7 @@ const MaisVendido = ({ productInfo }) => {
     {
         return products.map((elem) => {
                 return (
-                    <artilce className="mais__vendido" key={elem.code_color} index={elem.style}>
+                    <artilce className="mais__vendido" key={elem.code_color}>
                         <i id="icon" className="far fa-heart mais__vendido__icone" ></i>
                         
                         <Link to={`/catalogo/product=${elem.code_color}`} className="mais__vendido__route">

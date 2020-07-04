@@ -14,7 +14,7 @@ const Footer = () => (
             <address className="rodape__contatos">
                 <strong className="rodape__contatos__informacoes
                     rodape__contatos__informacoes--nome">fashionista modas</strong>
-                {/*Lista para facilitar o display das informações*/}
+                {/*Lista para criar o display das informações*/}
                 <ul className="rodape__contatos__informacoes">
                     <li>
                         <i className="far fa-envelope"></i>

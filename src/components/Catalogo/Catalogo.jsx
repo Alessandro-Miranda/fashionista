@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Loading from '../Loading';
 
 const Catalogo = ( props ) => {
-    const [cart, setCart] = useState(false);
+    const [ cart, setCart ] = useState(false);
     const { clickButton, products } = props;
     
     if(products.length > 0)
@@ -18,19 +18,19 @@ const Catalogo = ( props ) => {
             return (    
                 <artilce className="catalogo" key={elem.code_color} index={elem.style}>
                     <i id="icon" className="far fa-heart catalogo__icone" ></i>
-                    {elem.on_sale===true ?
+                    {elem.on_sale === true ?
                     <span className="catalogo__desconto">{elem.discount_percentage} off</span> : null
                     }
                     <Link to={`/catalogo/product=${elem.code_color}`} className="catalogo__route">
                         <div className="catalogo__image">
-                            {elem.image==="" ?
+                            {elem.image === "" ?
                                 <img src={produtoIndisponivel} alt="produto 1" className="catalogo__produto catalogo__produto--border"/> :
                                 <img src={elem.image} alt="produto 1" className="catalogo__produto catalogo__produto--border"/>
                             }
                             <p className="catalogo__descricao">
                             {elem.name}
                             </p>
-                            {elem.on_sale===true ? 
+                            {elem.on_sale === true ? 
                                 <p className="catalogo__descricao 
                                     catalogo__descricao--preco catalogo__descricao--preco--promocional">
                                     de <del>{elem.regular_price}</del><br />por <ins>{elem.actual_price}</ins>
@@ -46,7 +46,7 @@ const Catalogo = ( props ) => {
                             setCart(!cart);
                             clickButton(cart);
         
-                            if(cart===false)
+                            if(cart === false)
                             {
                                 document.getElementById(`carrinhoCatalogoIcone${elem.style}`).classList
                                     .add("catalogo__icone__carrinho--active");
