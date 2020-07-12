@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { purchasedProducts } from '../../actions';
-import { closeButtonClick } from '../../actions';
 import produtoIndisponivel from '../../assets/imagens/produto_indisponivel.png';
 
 import $ from 'jquery';
@@ -15,7 +14,7 @@ import $ from 'jquery';
 import './Topbar.scss';
 
 const Topbar = (props) => {
-    const { purchProducts, purchasedProducts, totalPrice, stateButton, closeButtonClick } = props;
+    const { purchProducts, purchasedProducts, totalPrice } = props;
     
     const deleteProduct = (id) => {
         let productName = parseFloat(document.getElementById(`removeButton${id}`).value);
@@ -51,11 +50,10 @@ const Topbar = (props) => {
                 <i className="fa fa-search" aria-hidden="true"></i>
             </Link>
             <button className="topbar__shoppingCart" onClick={() => {
-                closeButtonClick(!stateButton)
-                if(stateButton)
-                {
-                    $('#shoppingCart').show(400);
-                }
+                    $("#body").addClass("body__hide");
+                    $(".topbar").css("z-index", 3);
+                    $("#shoppingCart").fadeIn("slow");
+                
             }}>
                 <SacolaDeCompras className="topbar__shoppingCart__image"/>
                 
@@ -64,11 +62,9 @@ const Topbar = (props) => {
 
             <ul id="shoppingCart" className="topbar__shoppingCart__products">
                 <button className="topbar__shoppingCart__products__closeButton" onClick={() => {
-                    closeButtonClick(!stateButton)
-                    if(stateButton === false)
-                    {
-                        $('#shoppingCart').hide(400);
-                    }
+                    $("#body").removeClass("body__hide");
+                    $(".topbar").css("z-index", 2);
+                    $("#shoppingCart").fadeOut("slow");
                 }}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
@@ -133,6 +129,6 @@ const mapStateToProps = store => ({
     stateButton: store.clickState.stateButton
 });
 
-const mapDispacthToProps = dispatch => bindActionCreators({purchasedProducts, closeButtonClick}, dispatch);
+const mapDispacthToProps = dispatch => bindActionCreators({purchasedProducts}, dispatch);
   
 export default connect(mapStateToProps, mapDispacthToProps) (Topbar);

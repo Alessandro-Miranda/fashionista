@@ -33,6 +33,7 @@
     position: relative;
     left: 10%;
     right: 10%;
+    outline: none;
 }
 @media screen and (min-width: 960px)
 {
@@ -40,6 +41,11 @@
     {
         width: 10em;
         height: 5em;
+        left: 37.5%;
+    }
+    .topbar__menu
+    {
+        display: none;
     }
 }
 .topbar__search
@@ -115,6 +121,7 @@
     padding-top: .875em;
     padding-bottom: .875em;
     overflow-y: scroll;
+    z-index: 5;
     display: none;
 }
 @media screen and (min-width: 960px)
@@ -160,6 +167,7 @@
     border-bottom: 1px solid rgba(black, .3);
     padding-bottom: 1.875em;
     margin-top: 1.975em;
+    z-index: 5;
 }
 .topbar__shoppingCart__products__image
 {
