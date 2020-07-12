@@ -32,3 +32,10 @@
     display: block;
     width: 100%;
 }
+@media screen and (min-width: 960px)
+{
+    .mais__vendidos__title
+    {
+        margin: 1.575em 0;
+    }
+}

@@ -23,7 +23,7 @@
 {
     .catalogo
     {
-        margin-right: 5em;
+        margin-right: 3.375em;
     }
 }
 .catalogo__icone
@@ -76,6 +76,16 @@
     height: 100%;
     display: inline-block;
     border-radius: 5px;
+}
+.catalogo:hover
+{
+    transition: all .5s ease;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .5);
+}
+.catalogo:hover .catalogo__produto
+{
+    transition: all .5s ease;
+    transform: perspective(7.975em) translateZ(.175em);
 }
 .catalogo__produto--border
 {

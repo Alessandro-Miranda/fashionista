@@ -1,6 +1,6 @@
 .catalogos
 {
-    border-top: 1px solid rgba(112, 112, 112, .38);
+    border-top: 1px solid rgba(173, 145, 145, 0.38);
     margin-top: .375em;
     margin-bottom: 4.3em;
     display: flex;
@@ -14,14 +14,6 @@
         padding-left: 1em;
     }
 }
-@media screen and (min-width: 960px)
-{
-    .catalogos
-    {
-        justify-content: center;
-        padding-left: 1.375em;
-    }
-}
 .catalogos__title
 {
     font-family: 'Poiret One';
@@ -32,4 +24,19 @@
     margin-bottom: .875em;
     display: block;
     width: 100%;
+}
+@media screen and (min-width: 960px)
+{
+    .catalogos
+    {
+        padding-left: 3.375em;
+        display: grid;
+    }
+    .catalogos__title
+    {
+        position: relative;
+        left: -1.375em;
+        margin: 1.575em 0;
+        grid-column: 1 / span 5;
+    }
 }
