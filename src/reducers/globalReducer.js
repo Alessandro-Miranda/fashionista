@@ -1,14 +1,12 @@
 import { CLICK_UPDATE_SHOPPING_CART } from '../actions/actionsType';
 import { GET_UPDATE_PRODUCTS } from '../actions/actionsType';
 import { GET_PURCHASED_PRODUCTS } from '../actions/actionsType';
-import { CLOSE_BUTTON_SHOPPING_CART } from '../actions/actionsType';
 
 const initialState = {
     shoppingCart: false,
     products: [],
     purchProducts: [],
-    totalPrice: [],
-    stateButton: true
+    totalPrice: []
 };
 
 export const globalReducer = (state = initialState, action) => {
@@ -29,11 +27,6 @@ export const globalReducer = (state = initialState, action) => {
                 ...state,
                 purchProducts: action.purchProducts,
                 totalPrice: action.totalPrice
-            }
-        case CLOSE_BUTTON_SHOPPING_CART:
-            return {
-                ...state,
-                stateButton: action.stateButton
             }
         default:
             return state;
