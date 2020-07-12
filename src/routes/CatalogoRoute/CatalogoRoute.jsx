@@ -27,7 +27,13 @@ const CatalogoRoute = ( props ) => {
             const { product, prices } = getPurchaseds;
             purchasedProducts(product, prices);
         }
-    }
+        return confirmOrder();
+    };
+
+    const confirmOrder = () =>{
+        $("#popup").fadeIn('slow');
+        $("#body").addClass("body__hide");
+    };
     
     //Pega todas as informações do produto que serão apresentadas na tela
     let selected_product = selectedProduct(products, code_color);
@@ -170,15 +176,44 @@ const CatalogoRoute = ( props ) => {
                             }}>
                             Adicionar ao carrinho
                         </button> :
-                        <Link to="/" className="cat__route__purchase--backHome">
-                            <button id="purchase" className="cat__route__purchase" onClick={getPurchase}>
-                                Adicionar ao carrinho
-                            </button>
-                        </Link>
+                        <button id="purchase" className="cat__route__purchase" onClick={getPurchase}>
+                            Adicionar ao carrinho
+                        </button>
                     }
                     <div id="invalidSize" className="cat__route__invalidSize">Escolha um tamanho</div>
+                    <Link to="/" className="cat__route__purchase--backHome">
+                        <i class="fa fa-long-arrow-left"></i> Voltar para home        
+                    </Link>
                 </div>
-                
+
+                {/*Pop up de confirmação de inclusão de item na sacola de compras*/}
+                <div className="cat__route__order__confirm__hide" id="popup">
+                    <div className="cat__route__order__confirm__header">
+                        <h2 className="cat__route__order__confirm__header__title">
+                            Item adicionado à sacola de compras!!
+                        </h2>
+                        <i class="fa fa-times" aria-hidden="true"
+                            onClick={()=>{
+                                $("#popup").fadeOut("slow");
+                                $("#body").removeClass("body__hide");
+                            }}></i>
+                    </div>
+                    <p className="cat__route__order__confirm__information">
+                        Você incluiu à sua sacola o seguinte item:
+                    </p>
+                    <figure className="cat__route__order__confirm__product">
+                        <img src={selected_product.image} alt={selected_product.name} />
+                        <div className="cat__route__order__confirm__product__description">
+                            <figcaption>{selected_product.name}</figcaption>
+                            <figcaption className="cat__route__order__confirm__product__description__price">
+                                {
+                                    selected_product.promotion === selected_product.price ? 
+                                        selected_product.price : selected_product.promotion
+                                }
+                            </figcaption>
+                        </div>
+                    </figure>
+                </div>
             </article>
         </section>
     );
