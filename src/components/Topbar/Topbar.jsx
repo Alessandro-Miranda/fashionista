@@ -50,7 +50,7 @@ const Topbar = (props) => {
                 <i className="fa fa-search" aria-hidden="true"></i>
             </Link>
             <button className="topbar__shoppingCart" onClick={() => {
-                    $("#body").addClass("body__hide");
+                    $("body").addClass("body__hide");
                     $(".topbar").css("z-index", 3);
                     $("#shoppingCart").fadeIn("slow");
                 
@@ -62,7 +62,7 @@ const Topbar = (props) => {
 
             <ul id="shoppingCart" className="topbar__shoppingCart__products">
                 <button className="topbar__shoppingCart__products__closeButton" onClick={() => {
-                    $("#body").removeClass("body__hide");
+                    $("body").removeClass("body__hide");
                     $(".topbar").css("z-index", 2);
                     $("#shoppingCart").fadeOut("slow");
                 }}>

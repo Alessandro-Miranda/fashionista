@@ -14,6 +14,9 @@ body
   font-size: 16px;
   padding-top: .3125em;
   margin: 0;
+  position: relative;
+  top: 0;
+  min-height: 100%;
 }
 /*Classe usada para dar efeito de escurecimento no body quando aberto
 a sacola de compras e o pop-up de confirmação na tela*/
@@ -22,7 +25,7 @@ a sacola de compras e o pop-up de confirmação na tela*/
     content: "";
     position: absolute;
     top: 0;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     z-index: 3;
     background: rgba(0, 0, 0, .6);

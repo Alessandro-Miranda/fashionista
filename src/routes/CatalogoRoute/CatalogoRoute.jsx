@@ -32,7 +32,7 @@ const CatalogoRoute = ( props ) => {
 
     const confirmOrder = () =>{
         $("#popup").fadeIn('slow');
-        $("#body").addClass("body__hide");
+        $("body").addClass("body__hide");
     };
     
     //Pega todas as informações do produto que serão apresentadas na tela
@@ -182,7 +182,7 @@ const CatalogoRoute = ( props ) => {
                     }
                     <div id="invalidSize" className="cat__route__invalidSize">Escolha um tamanho</div>
                     <Link to="/" className="cat__route__purchase--backHome">
-                        <i class="fa fa-long-arrow-left"></i> Voltar para home        
+                        <i className="fa fa-long-arrow-left"></i> Voltar para home        
                     </Link>
                 </div>
 
@@ -192,10 +192,10 @@ const CatalogoRoute = ( props ) => {
                         <h2 className="cat__route__order__confirm__header__title">
                             Item adicionado à sacola de compras!!
                         </h2>
-                        <i class="fa fa-times" aria-hidden="true"
+                        <i className="fa fa-times" aria-hidden="true"
                             onClick={()=>{
                                 $("#popup").fadeOut("slow");
-                                $("#body").removeClass("body__hide");
+                                $("body").removeClass("body__hide");
                             }}></i>
                     </div>
                     <p className="cat__route__order__confirm__information">
